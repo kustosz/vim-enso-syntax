@@ -6,8 +6,8 @@ syn match ensoProperVar "\<[a-z][a-z_]*\>" contained
 syn match ensoProperType "\<[A-Z][a-z0-9]*\(_[A-Z][a-z0-9]*\)*\>"
 syn match ensoAnyIdent "\<[a-zA-Z]\w*\>" contained
 
-syn match ensoImport "^import\s\+.\+\s\+as.\+$" contains=ensoImportKw,ensoProperType
-syn match ensoPolyglotImport "^polyglot\s\+java\s\+import\s\+.\+\s\+as.\+$" contains=ensoImportKw,ensoPolyImportKw,ensoAnyIdent
+syn match ensoImport "^import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoProperType
+syn match ensoPolyglotImport "^polyglot\s\+java\s\+import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoPolyImportKw,ensoAnyIdent
 
 syn keyword ensoImportKw import as contained
 syn keyword ensoPolyImportKw polyglot java contained
