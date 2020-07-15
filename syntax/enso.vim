@@ -18,9 +18,12 @@ syn region ensoString start='"' end='"' skip='\\"' oneline
 syn region ensoString start="\'" end="\'" skip="\\\'" oneline
 syn match ensoOperator "[-!$%&\*\+/<=>\?^|~:.]\+\|\<_\>"
 syn match ensoAssignOp "="
-syn match ensoNumber "\<[1-9][0-9]*\>"
+syn match ensoNumber "\<[0-9]\+\>"
 
-syn match ensoDef "^\([A-Z]\w*\(\s*\)\.\2\)\?\<[a-zA-Z][a-zA-Z_]*\>\s*=" contains=ensoProperVar,ensoProperType,ensoAssignOp
+"syn match ensoDef "^\([A-Z]\w*\(\s*\)\.\2\)\?\<[a-zA-Z][a-zA-Z_]*\>\s*=" contains=ensoProperVar,ensoProperType,ensoAssignOp
+
+syn region ensoComment start="#" end="$" oneline
+syn region ensoDoc start="^\z(\s*\)##" end="^\(\z1  \|$\)\@!"
 
 hi def link ensoString String
 hi def link ensoKeyword Keyword
@@ -33,5 +36,7 @@ hi def link ensoNumber Number
 hi def link ensoProperVar Function
 hi def link ensoAnyIdent Type
 hi def link ensoThisHere Function
+hi def link ensoComment Comment
+hi def link ensoDoc Comment
 
 let b:current_syntax = "enso"
