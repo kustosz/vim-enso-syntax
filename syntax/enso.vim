@@ -25,6 +25,8 @@ syn match ensoNumber "\<[0-9]\+\>"
 syn region ensoComment start="#" end="$" oneline
 syn region ensoDoc start="^\z(\s*\)##" end="^\(\z1  \|$\)\@!"
 
+syn sync fromstart
+
 hi def link ensoString String
 hi def link ensoKeyword Keyword
 hi def link ensoImportKw Keyword
