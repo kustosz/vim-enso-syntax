@@ -7,9 +7,11 @@ syn match ensoProperType "\<[A-Z][a-z0-9]*\(_[A-Z][a-z0-9]*\)*\>"
 syn match ensoAnyIdent "\<[a-zA-Z]\w*\>" contained
 
 syn match ensoImport "^import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoProperType
+syn match ensoFromImport "^from\s\+.\+\(\s\+as.\+\)\?\s\+import.\+$" contains=ensoImportKw,ensoProperType,ensoFromImportKw
 syn match ensoPolyglotImport "^polyglot\s\+java\s\+import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoPolyImportKw,ensoAnyIdent
 
 syn keyword ensoImportKw import as contained
+syn keyword ensoFromImportKw from all hiding contained
 syn keyword ensoPolyImportKw polyglot java contained
 
 syn keyword ensoKeyword type case of if then else
@@ -30,6 +32,7 @@ syn sync fromstart
 hi def link ensoString String
 hi def link ensoKeyword Keyword
 hi def link ensoImportKw Keyword
+hi def link ensoFromImportKw Keyword
 hi def link ensoPolyImportKw Keyword
 hi def link ensoProperType Type
 hi def link ensoOperator Operator
