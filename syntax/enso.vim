@@ -8,9 +8,12 @@ syn match ensoAnyIdent "\<[a-zA-Z]\w*\>" contained
 
 syn match ensoImport "^import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoProperType
 syn match ensoFromImport "^from\s\+.\+\(\s\+as.\+\)\?\s\+import.\+$" contains=ensoImportKw,ensoProperType,ensoFromImportKw
+syn match ensoExport "^export\s\+.\+\(\s\+as.\+\)\?$" contains=ensoExportKw,ensoProperType
+syn match ensoFromExport "^from\s\+.\+\(\s\+as.\+\)\?\s\+export.\+$" contains=ensoExportKw,ensoProperType,ensoFromImportKw
 syn match ensoPolyglotImport "^polyglot\s\+java\s\+import\s\+.\+\(\s\+as.\+\)\?$" contains=ensoImportKw,ensoPolyImportKw,ensoAnyIdent
 
 syn keyword ensoImportKw import as contained
+syn keyword ensoExportKw export as contained
 syn keyword ensoFromImportKw from all hiding contained
 syn keyword ensoPolyImportKw polyglot java contained
 
@@ -19,8 +22,9 @@ syn keyword ensoThisHere here this
 syn region ensoString start='"' end='"' skip='\\"' oneline
 syn region ensoString start="\'" end="\'" skip="\\\'" oneline
 syn match ensoOperator "[-!$%&\*\+/<=>\?^|~:.]\+\|\<_\>"
+syn match ensoNumber "\<[0-9]\+\(\.[0-9]\+\)\?\>" contains=ensoDecimalPoint
+"syn match ensoDecimalPoint "\." contained
 syn match ensoAssignOp "="
-syn match ensoNumber "\<[0-9]\+\>"
 
 "syn match ensoDef "^\([A-Z]\w*\(\s*\)\.\2\)\?\<[a-zA-Z][a-zA-Z_]*\>\s*=" contains=ensoProperVar,ensoProperType,ensoAssignOp
 
@@ -32,12 +36,14 @@ syn sync fromstart
 hi def link ensoString String
 hi def link ensoKeyword Keyword
 hi def link ensoImportKw Keyword
+hi def link ensoExportKw Keyword
 hi def link ensoFromImportKw Keyword
 hi def link ensoPolyImportKw Keyword
 hi def link ensoProperType Type
 hi def link ensoOperator Operator
 hi def link ensoAssignOp Operator
 hi def link ensoNumber Number
+"hi def link ensoDecimalPoint Number
 hi def link ensoProperVar Function
 hi def link ensoAnyIdent Type
 hi def link ensoThisHere Function
