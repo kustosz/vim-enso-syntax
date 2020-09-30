@@ -19,8 +19,8 @@ syn keyword ensoPolyImportKw polyglot java contained
 
 syn keyword ensoKeyword type case of if then else
 syn keyword ensoThisHere here this
-syn region ensoString start='"' end='"' skip='\\"' oneline
-syn region ensoStringInt start="\'" end="\'" skip="\\\'" oneline contains=ensoEscape
+syn region ensoString start='"' end='"' skip='\\"' oneline contains=ensoEscapeBkSlash,ensoEscapeDQuote
+syn region ensoStringInt start="\'" end="\'" skip="\\\'" oneline contains=ensoEscape,ensoEscapeSQuote,ensoEscapeBkSlash
 syn match ensoOperator "[-!$%&\*\+/<=>\?^|~:.]\+\|\<_\>"
 syn match ensoNumber "\<[0-9]\+\(\.[0-9]\+\)\?\>"
 syn match ensoAssignOp "="
@@ -31,11 +31,14 @@ syn match ensoEscape "\\u{[A-F0-9]\{1,8}}" contained
 syn match ensoEscape "\\u[A-F0-9]\{4}" contained
 syn match ensoEscape "\\U[A-F0-9]\{8}" contained
 syn match ensoEscape "\\[abfnrtve]" contained
+syn match ensoEscapeSQuote "\\'" contained
+syn match ensoEscapeDQuote '\\"' contained
+syn match ensoEscapeBkSlash "\\\\" contained
 
 syn region ensoComment start="#" end="$" oneline
 syn region ensoDoc start="^\z(\s*\)##" end="^\(\z1  \|$\)\@!"
 syn region ensoStringBlock start='\(^\z(\s*\).*\)\@<="""' end="^\(\z1 \|$\)\@!"
-syn region ensoStringBlockInt start="\(^\z(\s*\).*\)\@<='''" end="^\(\z1 \|$\)\@!" contains=ensoEscape
+syn region ensoStringBlockInt start="\(^\z(\s*\).*\)\@<='''" end="^\(\z1 \|$\)\@!" contains=ensoEscape,ensoEscapeBkSlash
 
 syn sync fromstart
 
@@ -46,6 +49,9 @@ hi def link ensoStringInt String
 hi def link ensoStringBlockInt String
 
 hi def link ensoEscape SpecialChar
+hi def link ensoEscapeSQuote SpecialChar
+hi def link ensoEscapeDQuote SpecialChar
+hi def link ensoEscapeBkSlash SpecialChar
 
 hi def link ensoKeyword Keyword
 hi def link ensoImportKw Keyword
