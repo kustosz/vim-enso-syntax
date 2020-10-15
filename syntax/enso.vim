@@ -27,6 +27,8 @@ syn match ensoAssignOp "="
 
 "syn match ensoDef "^\([A-Z]\w*\(\s*\)\.\2\)\?\<[a-zA-Z][a-zA-Z_]*\>\s*=" contains=ensoProperVar,ensoProperType,ensoAssignOp
 
+syn match ensoAnnotation "@[A-Z][a-z0-9]*\(_[A-Z0-9][a-z0-9]*\)*"
+
 syn match ensoEscape "\\u{[A-F0-9]\{1,8}}" contained
 syn match ensoEscape "\\u[A-F0-9]\{4}" contained
 syn match ensoEscape "\\U[A-F0-9]\{8}" contained
@@ -67,5 +69,6 @@ hi def link ensoAnyIdent Type
 hi def link ensoThisHere Function
 hi def link ensoComment Comment
 hi def link ensoDoc Comment
+hi def link ensoAnnotation Tag
 
 let b:current_syntax = "enso"
